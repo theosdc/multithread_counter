@@ -21,7 +21,7 @@ typedef enum {			/* Define um tipo para verdadeiro e falso */
 /*= Variaveis globais                                                        =*/
 /*============================================================================*/
 unsigned int completos[N_MAX];	 /* Indica quais numeros ja foram analisados */
-unsigned long int numeros[N_MAX];/* Numeros a serem analisados */
+unsigned long long int numeros[N_MAX];/* Numeros a serem analisados */
 unsigned int primos = 0;	 /* Contador de numeros primos */
 
 pthread_mutex_t trava;
@@ -45,7 +45,7 @@ int ini_thread_pool(void) {
     char aux;
 
     do {			/* Gera um vetor com os numeros da entrada */
-	scanf("%ld%c", &numeros[n], &aux);
+	scanf("%lld%c", &numeros[n], &aux);
 	n++;
     }while(aux != '\n');
 
@@ -56,7 +56,7 @@ int ini_thread_pool(void) {
     return(n);
 }
 
-bool primo_teste(unsigned long int n) {
+bool primo_teste(unsigned long long int n) {
 /*============================================================================*/
 /*= Teste de primalidade com otimizacao  6k+-1                               =*/
 /*= Disponivel em: <https://en.wikipedia.org/wiki/Primality_test>            =*/
@@ -73,7 +73,7 @@ bool primo_teste(unsigned long int n) {
 	return(FALSE);				/* 2 ou por 3 */
 
     } else {
-	unsigned long int i = 5;
+	unsigned long long int i = 5;
 
 	while (i*i <= n) {	/* Otimização 6k+1 */
 	    if ((n % i == 0) || (n % (i+2) == 0)) {
